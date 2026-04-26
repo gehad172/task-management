@@ -1,0 +1,16 @@
+﻿src/middleware/validate.ts(16,49): error TS2339: Property 'errors' does not exist on type 'ZodError<unknown>'.
+src/middleware/validate.ts(17,31): error TS7006: Parameter 'issue' implicitly has an 'any' type.
+src/middleware/validation.ts(17,50): error TS2339: Property 'errors' does not exist on type 'ZodError<{ name: string; email: string; password: string; }>'.
+src/middleware/validation.ts(17,61): error TS7006: Parameter 'e' implicitly has an 'any' type.
+src/routes/tasks.ts(25,15): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(values: readonly ["todo", "in_progress", "done"], params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; } | undefined): ZodEnum<...>', gave the following error.
+    Object literal may only specify known properties, and 'errorMap' does not exist in type '{ error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; }'.
+  Overload 2 of 2, '(entries: Readonly<Record<string, EnumValue>>, params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; } | undefined): ZodEnum<...>', gave the following error.
+    Argument of type 'string[]' is not assignable to parameter of type 'Readonly<Record<string, EnumValue>>'.
+      Index signature for type 'string' is missing in type 'string[]'.
+src/routes/tasks.ts(34,15): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(values: readonly ["todo", "in_progress", "done"], params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; } | undefined): ZodEnum<...>', gave the following error.
+    Object literal may only specify known properties, and 'errorMap' does not exist in type '{ error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; }'.
+  Overload 2 of 2, '(entries: Readonly<Record<string, EnumValue>>, params?: string | { error?: string | $ZodErrorMap<$ZodIssueInvalidValue<unknown>> | undefined; message?: string | undefined; } | undefined): ZodEnum<...>', gave the following error.
+    Argument of type 'string[]' is not assignable to parameter of type 'Readonly<Record<string, EnumValue>>'.
+      Index signature for type 'string' is missing in type 'string[]'.

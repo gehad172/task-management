@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html class="light dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;family=Inter:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#edeaff",
+                    "primary-fixed-dim": "#5a52f0",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#6760fd",
+                    "primary-container": "#6760fd",
+                    "error-dim": "#6b0221",
+                    "on-error-container": "#6e0523",
+                    "tertiary-fixed": "#fdd2fd",
+                    "on-primary": "#fbf7ff",
+                    "surface-bright": "#fcf8fe",
+                    "inverse-primary": "#8582ff",
+                    "secondary-container": "#e3e0f9",
+                    "surface": "#fcf8fe",
+                    "outline": "#7b7984",
+                    "tertiary-dim": "#68486b",
+                    "error-container": "#f97386",
+                    "outline-variant": "#b3b0bc",
+                    "background": "#fcf8fe",
+                    "error": "#a8364b",
+                    "surface-container-highest": "#e4e1ed",
+                    "surface-dim": "#dcd8e4",
+                    "on-secondary": "#fbf7ff",
+                    "on-secondary-fixed": "#3e3d51",
+                    "tertiary": "#755478",
+                    "surface-container-high": "#eae6f1",
+                    "surface-tint": "#4e45e4",
+                    "on-background": "#32313b",
+                    "surface-variant": "#e4e1ed",
+                    "on-tertiary-container": "#654568",
+                    "secondary-fixed": "#e3e0f9",
+                    "primary-dim": "#4135d8",
+                    "secondary": "#5e5d72",
+                    "primary": "#4e45e4",
+                    "on-error": "#fff7f7",
+                    "on-surface": "#32313b",
+                    "inverse-surface": "#0e0e12",
+                    "on-tertiary-fixed": "#513254",
+                    "secondary-dim": "#525166",
+                    "on-tertiary-fixed-variant": "#704e72",
+                    "on-secondary-container": "#515064",
+                    "on-tertiary": "#fff7fa",
+                    "on-surface-variant": "#5f5e68",
+                    "surface-container": "#f0ecf6",
+                    "surface-container-low": "#f6f2fa",
+                    "on-secondary-fixed-variant": "#5b596e",
+                    "tertiary-fixed-dim": "#eec4ef",
+                    "secondary-fixed-dim": "#d5d2eb",
+                    "on-primary-fixed": "#ffffff",
+                    "tertiary-container": "#fdd2fd",
+                    "inverse-on-surface": "#9e9ca2",
+                    "on-primary-container": "#000000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface overflow-hidden dark:bg-slate-950 dark:text-slate-100"><header class="fixed top-0 w-full z-50 bg-[#fcf8fe] dark:bg-slate-950 backdrop-blur-xl bg-opacity-80 flex justify-between items-center px-8 py-3 w-full border-b border-indigo-50/10 font-['Manrope'] text-sm tracking-tight">
+<div class="flex items-center gap-8">
+<div class="text-xl font-bold tracking-tighter text-indigo-700 dark:text-indigo-400">The Editorial Kanban</div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-slate-400">search</span>
+<input class="bg-slate-100/50 dark:bg-slate-800/50 border-none rounded-lg pl-10 pr-4 py-2 w-64 focus:ring-2 focus:ring-indigo-500 transition-all" placeholder="Search tasks..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors scale-95 duration-200 ease-out" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="p-2 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors scale-95 duration-200 ease-out">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-800 mx-2"></div>
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover border border-indigo-100 dark:border-indigo-900" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzvWmD2qesFoqkIwD5jZYoH4zm5xFnSuIJqtbpR9JD834YLd6Dlz1O8mume4nxiiWLmhIwqZl86t4sN8yiapcqOMVWXHSjkKWsyHqdoevn-Ipn4BwoPpP90VJBM278k_j9NvNZdjwczICfRsz7hRALB10vUC7zKqBvojTu5BEjNxhPF3oPSKcgICTmKw2Sg0o2F2YPcUAlpOARSC40zURV0X8YZonDAWqMtGFxkUmKl921CjTc-q48WD8yq0F9ZdDhNxK163ZlJm2C"/>
+</div>
+</header>
+<!-- Mock Board Background (Underlay) -->
+<div class="fixed inset-0 flex">
+<!-- SideNavBar predicted from JSON -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#f6f2fa] dark:bg-slate-900 flex flex-col h-full p-6 space-y-8 font-['Manrope'] font-medium text-sm mt-14">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+</div>
+<div>
+<h2 class="font-black text-indigo-700 dark:text-indigo-400">Main Workspace</h2>
+<p class="text-xs text-on-surface-variant dark:text-slate-400">Editorial Flow</p>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<div class="flex items-center gap-3 px-3 py-2 text-indigo-700 dark:text-indigo-300 font-bold bg-white/50 dark:bg-slate-800/50 rounded-lg transition-transform translate-x-1">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Board
+                </div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+                    Analytics
+                </div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                    Team
+                </div>
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </div>
+</nav>
+<div class="pt-6 border-t border-outline-variant/10">
+<div class="flex items-center gap-3 px-3 py-2 text-slate-500">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                    Activity Log
+                </div>
+</div>
+</aside>
+<!-- Main Board Canvas (Blurry Backdrop) -->
+<main class="ml-64 flex-1 p-8 filter blur-sm mt-14">
+<div class="grid grid-cols-3 gap-6">
+<div class="bg-surface-container-low p-6 rounded-2xl h-[819px] dark:bg-slate-800">
+<div class="h-10 w-32 bg-surface-container-high rounded mb-6"></div>
+<div class="space-y-4">
+<div class="h-32 bg-surface-container-lowest rounded-xl dark:bg-slate-900 dark:text-slate-100"></div>
+<div class="h-32 bg-surface-container-lowest rounded-xl dark:bg-slate-900 dark:text-slate-100"></div>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl h-[819px] dark:bg-slate-800"></div>
+<div class="bg-surface-container-low p-6 rounded-2xl h-[819px] dark:bg-slate-800"></div>
+</div>
+</main>
+</div>
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 bg-on-background/20 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+<!-- Task Detail Modal -->
+<div class="bg-surface-container-lowest w-full max-w-5xl h-[921px] rounded-[2rem] shadow-[0_40px_100px_rgba(78,69,228,0.12)] overflow-hidden flex border border-outline-variant/5 dark:bg-slate-900 dark:text-slate-100">
+<!-- Left Side: Task Content & Discussion -->
+<div class="flex-1 flex flex-col min-w-0 border-r border-outline-variant/10">
+<!-- Modal Header -->
+<div class="px-10 pt-10 pb-6">
+<div class="flex items-center gap-2 mb-4">
+<span class="text-xs font-bold tracking-widest text-primary uppercase">Editorial Flow</span>
+<span class="text-outline-variant">/</span>
+<span class="text-xs font-bold tracking-widest text-on-surface-variant uppercase dark:text-slate-400">Feature Deep Dive</span>
+</div>
+<textarea class="w-full text-4xl font-extrabold tracking-tight text-on-surface bg-transparent border-none focus:ring-0 p-0 resize-none h-auto overflow-hidden leading-tight dark:text-slate-100" placeholder="Task Title">Sustainable Fashion Series: The 2024 Audit</textarea>
+</div>
+<!-- Scrollable Body -->
+<div class="flex-1 overflow-y-auto px-10 pb-10 space-y-12">
+<!-- Description Section -->
+<section>
+<div class="flex items-center gap-2 mb-4 text-on-surface-variant dark:text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="subject">subject</span>
+<h3 class="text-sm font-bold uppercase tracking-wider">Project Narrative</h3>
+</div>
+<div class="bg-surface-container-low/50 p-6 rounded-2xl group transition-all hover:bg-surface-container-low">
+<textarea class="w-full bg-transparent border-none focus:ring-0 p-0 body-md text-on-surface leading-relaxed min-h-[120px] resize-none dark:text-slate-100" placeholder="Add a more detailed description...">The audit needs to cover the transition from traditional sourcing to circular supply chains within the APAC region. Focus on interviewing key stakeholders at GreenThread and analyzing the Q3 logistics report. Ensure the tone remains authoritative yet optimistic about industry shifts.</textarea>
+</div>
+</section>
+<!-- Comments / Threaded Section -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-2 text-on-surface-variant dark:text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="forum">forum</span>
+<h3 class="text-sm font-bold uppercase tracking-wider">Editorial Feedback</h3>
+</div>
+<button class="text-xs font-bold text-primary flex items-center gap-1 hover:underline">
+                                Sort by Newest <span class="material-symbols-outlined text-xs" data-icon="expand_more">expand_more</span>
+</button>
+</div>
+<div class="space-y-8">
+<!-- Comment 1 -->
+<div class="flex gap-4">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="portrait of a professional woman with a minimalist aesthetic and soft cinematic lighting in an office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWuyOrBJjiVg0nLYU1a8p0mLww0VJ5V2vIwFXZJjVpmyGsNS6Adlhd2mU-hzALymD1hIilVp3POYxeya2wgP3eJwxyLyzj-8WbXdrJBQV5MHMUzyXxW_0jmx-cJ8IxzD4f2uB3UAYgGeCOxLIOo6qH5t_X9OplkP6JAwdAF38kOE7f_DqKuqZsA2dx44Q91haElN4b36kF_3s_8KkNdvr0LVgWCn7CFRBbbtGfMeLmkdDA8VmIbaR3z-Ynam9M9zEOk2AYNwYf5tZX"/>
+<div class="flex-1">
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-bold text-on-surface dark:text-slate-100">Sarah Jenkins</span>
+<span class="text-xs text-on-surface-variant dark:text-slate-400">2 hours ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed dark:text-slate-400">Have we considered reaching out to the sustainability lead at Zara for a counter-point? Might add more editorial weight.</p>
+<div class="flex gap-4 mt-3">
+<button class="text-xs font-bold text-on-surface-variant hover:text-primary flex items-center gap-1 dark:text-slate-400">
+<span class="material-symbols-outlined text-xs" data-icon="thumb_up">thumb_up</span> 12
+                                        </button>
+<button class="text-xs font-bold text-on-surface-variant hover:text-primary dark:text-slate-400">Reply</button>
+</div>
+</div>
+</div>
+<!-- Comment 2 (Threaded) -->
+<div class="flex gap-4 ml-14">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="portrait of a designer with clean glasses and a modern black shirt against a soft grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgnRsV72fzMqIobhjJ1JZcGGV9m8ApSghca-UZVrBMXLJxZ79K9PMPY3NiwekSemy93aDBnXUj9q5VsUJ2eavHi6oZTvVhnSOT4JRMKyguGEtvavTGQTeEVc_WsxJnYPSoQN6efhVjyfobCe-n8l8ijuPjoI_pIPXeu_SxT5aV11CZ9bThvfdJGFvgX7Dhuju4dOvDD2EQsOV380wsgFcrMTXXzKWwrMZSYptSZMqaGGd6ZCx5JUNuLZQUc2L5kRQzUW0cI2bMtRER"/>
+<div class="flex-1">
+<div class="flex items-baseline gap-2 mb-1">
+<span class="font-bold text-on-surface dark:text-slate-100">Mark Thorne</span>
+<span class="text-xs text-on-surface-variant dark:text-slate-400">45 mins ago</span>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed dark:text-slate-400">I'm on it. Already sent the initial inquiry. Waiting for their press team to confirm availability.</p>
+</div>
+</div>
+<!-- New Comment Input -->
+<div class="flex gap-4 mt-10">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div class="flex-1 bg-surface-container-low rounded-2xl p-4 flex items-end dark:bg-slate-800">
+<textarea class="w-full bg-transparent border-none focus:ring-0 p-0 text-sm resize-none" placeholder="Write a comment..." rows="1"></textarea>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg text-xs font-bold hover:opacity-90 transition-opacity">Post</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Right Side: Sidebar Meta -->
+<div class="w-80 bg-surface-container-low/30 p-8 flex flex-col gap-10">
+<!-- Close Button -->
+<div class="flex justify-end">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Assignment -->
+<div class="space-y-4">
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-slate-400">Contributors</h3>
+<div class="space-y-2">
+<div class="flex items-center gap-3 p-2 rounded-xl hover:bg-white transition-colors cursor-pointer group">
+<img class="w-8 h-8 rounded-full border-2 border-white" data-alt="woman headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzvWmD2qesFoqkIwD5jZYoH4zm5xFnSuIJqtbpR9JD834YLd6Dlz1O8mume4nxiiWLmhIwqZl86t4sN8yiapcqOMVWXHSjkKWsyHqdoevn-Ipn4BwoPpP90VJBM278k_j9NvNZdjwczICfRsz7hRALB10vUC7zKqBvojTu5BEjNxhPF3oPSKcgICTmKw2Sg0o2F2YPcUAlpOARSC40zURV0X8YZonDAWqMtGFxkUmKl921CjTc-q48WD8yq0F9ZdDhNxK163ZlJm2C"/>
+<span class="text-sm font-medium text-on-surface dark:text-slate-100">Sarah Jenkins</span>
+<span class="material-symbols-outlined text-xs ml-auto opacity-0 group-hover:opacity-100" data-icon="close">close</span>
+</div>
+<button class="flex items-center gap-3 p-2 rounded-xl border border-dashed border-outline-variant hover:border-primary hover:text-primary transition-all w-full text-on-surface-variant dark:text-slate-400">
+<div class="w-8 h-8 rounded-full flex items-center justify-center bg-surface-container-high">
+<span class="material-symbols-outlined text-sm" data-icon="add">add</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-tighter">Assign Team</span>
+</button>
+</div>
+</div>
+<!-- Due Date -->
+<div class="space-y-4">
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-slate-400">Deadline</h3>
+<div class="flex items-center gap-3 bg-white p-4 rounded-2xl shadow-sm cursor-pointer hover:shadow-md transition-shadow dark:bg-slate-800 dark:border-slate-700">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
+<div>
+<p class="text-sm font-bold text-on-surface dark:text-slate-100">Oct 24, 2024</p>
+<p class="text-[10px] text-error font-bold uppercase">4 days remaining</p>
+</div>
+</div>
+</div>
+<!-- Priority -->
+<div class="space-y-4">
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-slate-400">Urgency</h3>
+<div class="relative">
+<select class="w-full bg-white border-none rounded-2xl p-4 text-sm font-bold text-on-surface shadow-sm focus:ring-2 focus:ring-primary/20 appearance-none cursor-pointer dark:text-slate-100 dark:bg-slate-800 dark:border-slate-700">
+<option>High Priority</option>
+<option selected="">Medium Priority</option>
+<option>Low Priority</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant dark:text-slate-400" data-icon="unfold_more">unfold_more</span>
+</div>
+</div>
+<!-- Status Tags -->
+<div class="space-y-4">
+<h3 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant dark:text-slate-400">Classifications</h3>
+<div class="flex flex-wrap gap-2">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">Journalism</span>
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter">External Audit</span>
+<button class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary-container hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-xs" data-icon="add">add</span>
+</button>
+</div>
+</div>
+<!-- Actions -->
+<div class="mt-auto pt-6 space-y-3">
+<button class="w-full py-4 rounded-xl bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold shadow-lg shadow-primary/20 flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="done_all" style="font-variation-settings: 'FILL' 1;">done_all</span>
+                        Mark as Complete
+                    </button>
+<button class="w-full py-4 rounded-xl bg-surface-container-high text-on-surface-variant font-bold flex items-center justify-center gap-2 hover:bg-error-container/10 hover:text-error transition-colors dark:text-slate-400">
+<span class="material-symbols-outlined text-sm" data-icon="delete">delete</span>
+                        Archive Task
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

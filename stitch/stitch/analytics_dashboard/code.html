@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Editorial Kanban - Analytics Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#fcf8fe",
+                      "secondary": "#5e5d72",
+                      "on-tertiary": "#fff7fa",
+                      "surface-container-high": "#eae6f1",
+                      "secondary-fixed": "#e3e0f9",
+                      "inverse-primary": "#8582ff",
+                      "secondary-container": "#e3e0f9",
+                      "surface-container-highest": "#e4e1ed",
+                      "surface-variant": "#e4e1ed",
+                      "surface-tint": "#4e45e4",
+                      "on-primary-fixed": "#ffffff",
+                      "error-dim": "#6b0221",
+                      "inverse-surface": "#0e0e12",
+                      "tertiary": "#755478",
+                      "on-secondary-container": "#515064",
+                      "inverse-on-surface": "#9e9ca2",
+                      "surface-dim": "#dcd8e4",
+                      "primary-fixed-dim": "#5a52f0",
+                      "secondary-fixed-dim": "#d5d2eb",
+                      "tertiary-dim": "#68486b",
+                      "on-tertiary-container": "#654568",
+                      "on-secondary": "#fbf7ff",
+                      "tertiary-fixed-dim": "#eec4ef",
+                      "on-error-container": "#6e0523",
+                      "outline": "#7b7984",
+                      "secondary-dim": "#525166",
+                      "surface-container-low": "#f6f2fa",
+                      "on-surface-variant": "#5f5e68",
+                      "error-container": "#f97386",
+                      "on-primary": "#fbf7ff",
+                      "on-primary-container": "#000000",
+                      "on-surface": "#32313b",
+                      "primary-fixed": "#6760fd",
+                      "on-secondary-fixed-variant": "#5b596e",
+                      "surface-container": "#f0ecf6",
+                      "outline-variant": "#b3b0bc",
+                      "on-tertiary-fixed-variant": "#704e72",
+                      "on-secondary-fixed": "#3e3d51",
+                      "on-error": "#fff7f7",
+                      "on-tertiary-fixed": "#513254",
+                      "surface-bright": "#fcf8fe",
+                      "on-primary-fixed-variant": "#edeaff",
+                      "primary-dim": "#4135d8",
+                      "surface-container-lowest": "#ffffff",
+                      "primary": "#4e45e4",
+                      "tertiary-fixed": "#fdd2fd",
+                      "primary-container": "#6760fd",
+                      "tertiary-container": "#fdd2fd",
+                      "error": "#a8364b",
+                      "on-background": "#32313b",
+                      "background": "#fcf8fe"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Manrope', sans-serif; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #dcd8e4; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #b3b0bc; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Authority: JSON & Design System) -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-50 bg-slate-50 dark:bg-slate-950 flex flex-col h-full py-8 px-4 space-y-6">
+<div class="flex items-center space-x-3 px-2 mb-4">
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary-container flex items-center justify-center text-white shadow-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+</div>
+<div>
+<h1 class="font-manrope font-black text-indigo-700 dark:text-indigo-300 text-lg leading-none">Editorial</h1>
+<p class="text-xs text-on-surface-variant font-medium">Task Curator</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="group flex items-center px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all rounded-lg font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3 transition-all group-hover:translate-x-1" data-icon="grid_view">grid_view</span>
+                Board
+            </a>
+<a class="group flex items-center px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all rounded-lg font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3 transition-all group-hover:translate-x-1" data-icon="group">group</span>
+                Team
+            </a>
+<!-- Active State: Analytics -->
+<a class="group flex items-center px-3 py-2.5 text-indigo-700 dark:text-indigo-300 font-bold border-r-2 border-indigo-600 dark:border-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/20 transition-all font-inter text-sm" href="#">
+<span class="material-symbols-outlined mr-3 transition-all group-hover:translate-x-1" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+                Analytics
+            </a>
+<a class="group flex items-center px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all rounded-lg font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3 transition-all group-hover:translate-x-1" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-3 rounded-lg font-semibold flex items-center justify-center shadow-md active:scale-95 transition-all duration-150">
+<span class="material-symbols-outlined mr-2" data-icon="add">add</span>
+            New Task
+        </button>
+<div class="pt-6 border-t border-surface-container space-y-1">
+<a class="group flex items-center px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all rounded-lg font-inter text-sm font-medium" href="#">
+<span class="material-symbols-outlined mr-3 transition-all group-hover:translate-x-1" data-icon="contact_support">contact_support</span>
+                Support
+            </a>
+<a class="group flex items-center px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all rounded-lg font-inter text-sm font-medium text-error" href="#">
+<span class="material-symbols-outlined mr-3 transition-all group-hover:translate-x-1" data-icon="logout">logout</span>
+                Sign Out
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar (Authority: JSON) -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl sticky top-0 w-full z-40 shadow-sm dark:shadow-none flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center space-x-8">
+<h2 class="font-manrope font-extrabold text-indigo-700 dark:text-indigo-300 text-xl tracking-tight">Editorial Kanban</h2>
+<div class="hidden md:flex bg-surface-container-low rounded-full px-4 py-1.5 items-center space-x-2 w-96">
+<span class="material-symbols-outlined text-outline text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant" placeholder="Search analytics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 text-slate-500 hover:bg-indigo-50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-indigo-50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="profile portrait of a creative professional in a clean studio setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqKqQQNrTKefbT2URupQ1WQ3VkrnjcZ0tuAotd-S4Y4TJQhQnn_kmaBnV9kN5jedNzF8C6KGolFNADbbzojE9gchxnwXSeQcUtm12B0rYJdbU-bwjXq9ut5zxpr5gyBOkpuJmCSHSUsbfnvhFEZq3PJpQU3YD7MyEQZmyG7MtODorJ3HVk96erc18IYH3BoQ-D5aoSmLKYgqCWlxKyNdkC02ps9ARt0mMhQdnd5WWtQd7vhjHmGBJuQF7bj5kMOmkiDy1SSOBSryFw"/>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-8 max-w-7xl mx-auto space-y-8">
+<!-- Header Section -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h3 class="text-display-md font-headline font-extrabold text-on-surface text-3xl">Performance Insights</h3>
+<p class="text-on-surface-variant mt-1">Real-time analysis of editorial throughput and team efficiency.</p>
+</div>
+<div class="flex items-center space-x-3">
+<button class="flex items-center space-x-2 px-4 py-2 bg-surface-container-lowest rounded-lg text-sm font-semibold text-secondary hover:bg-surface-container-low transition-colors duration-200">
+<span class="material-symbols-outlined text-lg" data-icon="calendar_today">calendar_today</span>
+<span>Last 30 Days</span>
+<span class="material-symbols-outlined text-lg" data-icon="expand_more">expand_more</span>
+</button>
+<button class="flex items-center space-x-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-semibold hover:bg-primary-fixed shadow-sm active:scale-95 transition-all">
+<span class="material-symbols-outlined text-lg" data-icon="download">download</span>
+<span>Export PDF</span>
+</button>
+</div>
+</section>
+<!-- KPI Grid -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Completion Rate Card -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_20px_rgba(78,69,228,0.03)] flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="p-2 rounded-lg bg-secondary-container text-primary">
+<span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
+</span>
+<span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">+12.5%</span>
+</div>
+<div>
+<p class="text-sm text-on-surface-variant font-medium">Task Completion</p>
+<h4 class="text-2xl font-black font-headline mt-1">84.2%</h4>
+</div>
+</div>
+<!-- Cycle Time Card -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_20px_rgba(78,69,228,0.03)] flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="p-2 rounded-lg bg-tertiary-container text-tertiary">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</span>
+<span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded-full">-2.4%</span>
+</div>
+<div>
+<p class="text-sm text-on-surface-variant font-medium">Avg. Cycle Time</p>
+<h4 class="text-2xl font-black font-headline mt-1">3.2 Days</h4>
+</div>
+</div>
+<!-- Active Projects -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_20px_rgba(78,69,228,0.03)] flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="p-2 rounded-lg bg-surface-container-high text-on-surface">
+<span class="material-symbols-outlined" data-icon="layers">layers</span>
+</span>
+<span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full">Stable</span>
+</div>
+<div>
+<p class="text-sm text-on-surface-variant font-medium">In Progress</p>
+<h4 class="text-2xl font-black font-headline mt-1">42</h4>
+</div>
+</div>
+<!-- Team Efficiency -->
+<div class="bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_20px_rgba(78,69,228,0.03)] flex flex-col justify-between h-40">
+<div class="flex justify-between items-start">
+<span class="p-2 rounded-lg bg-primary-container text-on-primary">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</span>
+<span class="text-xs font-bold text-green-600 bg-green-50 px-2 py-1 rounded-full">+5.8%</span>
+</div>
+<div>
+<p class="text-sm text-on-surface-variant font-medium">Team Efficiency</p>
+<h4 class="text-2xl font-black font-headline mt-1">91%</h4>
+</div>
+</div>
+</section>
+<!-- Main Charts Section -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Burnup Chart (Asymmetric Focus) -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_rgba(78,69,228,0.03)]">
+<div class="flex items-center justify-between mb-8">
+<div>
+<h4 class="font-headline font-bold text-lg">Workstream Burnup</h4>
+<p class="text-sm text-on-surface-variant">Progress tracking vs Total Scope</p>
+</div>
+<div class="flex items-center space-x-4 text-xs font-semibold">
+<div class="flex items-center space-x-1.5">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span>Completed</span>
+</div>
+<div class="flex items-center space-x-1.5">
+<div class="w-3 h-3 rounded-full bg-surface-container-highest"></div>
+<span>Total Scope</span>
+</div>
+</div>
+</div>
+<div class="relative h-64 w-full bg-surface-container-low rounded-lg overflow-hidden group">
+<!-- Simulated Chart Grid -->
+<div class="absolute inset-0 flex flex-col justify-between p-4 py-8 opacity-20">
+<div class="border-t border-outline-variant w-full"></div>
+<div class="border-t border-outline-variant w-full"></div>
+<div class="border-t border-outline-variant w-full"></div>
+<div class="border-t border-outline-variant w-full"></div>
+</div>
+<!-- Line Visualization (SVG) -->
+<svg class="absolute inset-0 h-full w-full" preserveaspectratio="none">
+<path class="opacity-80" d="M0 256 L64 240 L128 220 L192 180 L256 160 L320 140 L384 100 L448 90 L512 70 L576 40 L640 20 L704 10 L768 0 L832 0" fill="none" stroke="#4e45e4" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+<path d="M0 256 L100 245 L200 230 L300 210 L400 190 L500 180 L600 160 L700 155 L800 150" fill="none" stroke="#eae6f1" stroke-linecap="round" stroke-width="6"></path>
+</svg>
+<!-- Gradient Overlay -->
+<div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-surface-container-lowest to-transparent pointer-events-none"></div>
+</div>
+<div class="mt-6 flex justify-between px-2">
+<span class="text-xs text-on-surface-variant font-medium">WK 1</span>
+<span class="text-xs text-on-surface-variant font-medium">WK 2</span>
+<span class="text-xs text-on-surface-variant font-medium">WK 3</span>
+<span class="text-xs text-on-surface-variant font-medium">WK 4</span>
+</div>
+</div>
+<!-- Team Productivity Widget -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_rgba(78,69,228,0.03)] flex flex-col">
+<h4 class="font-headline font-bold text-lg mb-6">Top Performers</h4>
+<div class="space-y-6 flex-1">
+<!-- Member 1 -->
+<div class="flex items-center space-x-4">
+<img alt="Team member" class="w-10 h-10 rounded-full" data-alt="professional portrait of a woman with glasses in a minimalist workspace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT-fDF0t6nlxCaUmuKhNUh85HvHqpGyQD9MW6gofhIi-CBRfx5Yg8v3eHYxvK_BSlVvr_Ddvw96dXS4SPRel3vSue_vRBL67AByOr0IH7gUDZylCcwOYSxH8O3_q_LRxYs8-RkMIKh-wtysre1GVNzLfLJQzcsg3R3zKgoVYDdsYztvDU6tl92FUnlQ7oH7eJuc8bnxG7xJaqZHwuXQ-NLjXDjW7URFja45shJOn8Z3vcaRP9ZE9JRCxrWaVHYkFn3ugwj8NAcR_tr"/>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-1.5">
+<p class="text-sm font-semibold">Elena K.</p>
+<span class="text-xs text-primary font-bold">28 Tasks</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="flex items-center space-x-4">
+<img alt="Team member" class="w-10 h-10 rounded-full" data-alt="close-up of a young creative man looking focused at a computer screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwL4TQNIgEe1M_JhmsU-dRbwhHardiiAsWQt__3eFq52qfi0O9TgXynCUEsljSHj7gRcG7ugDTFk2gbpCWniHzmWIWTqLfiWDwkVbupeHWS-mkZzhRpmh_xJ1wTRhVqQB4G7DGZDekgDuV99zySB-Y2Do19KTCUNBLx5-TaWP5n3SpZSGbFXw3wUYndMqPMt250EMDZHQ44RKMDOqGtsADdetVnRfE7p3g1kVvnl-d3sIbDOwMetDKwGZUpBPbojjq03Zh6QQ3csWh"/>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-1.5">
+<p class="text-sm font-semibold">Marcus R.</p>
+<span class="text-xs text-primary font-bold">24 Tasks</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 72%"></div>
+</div>
+</div>
+</div>
+<!-- Member 3 -->
+<div class="flex items-center space-x-4">
+<img alt="Team member" class="w-10 h-10 rounded-full" data-alt="woman smiling in a bright office environment with natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfa95RYUCAJstuBapNMvrMqViKQbwv3-VbTu_JFquL8_jcIbRA3ElLB6JHViqFyCeuisyFisS3oBNkiQcmVDWYHsu7h6o-6G7EDCdW2B9RyIEDJWghHMMqFHBS9oMFfx3bGTgc7hyn50GnrQsVwweVnzdOv0nhZRRlQEN6_Lu7TWfmVfu81L5QflfVI7KfE7E3eHppJyR0cEmxrHmg3KO76_ioP2cHF9kiq4bFBK8ndEr3sw-bKCVWR7y2c_boYo_Ayp-U50mJJOKl"/>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-1.5">
+<p class="text-sm font-semibold">Sarah L.</p>
+<span class="text-xs text-primary font-bold">21 Tasks</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 64%"></div>
+</div>
+</div>
+</div>
+<!-- Member 4 -->
+<div class="flex items-center space-x-4">
+<img alt="Team member" class="w-10 h-10 rounded-full" data-alt="modern professional headshot of a man with a beard and confident expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA60nr3j82AEIkENbSWPADOh9wteWAa-G0qTy1DMKXGl-CUYykk3LXa_4rxvfRd33Zt2vY2VBw8YQ9nl2MyKzV1k01KFsQvqTqlzuvxRnr6YGeP1fEex13Mwqy5_6d9Rl8eSfabddDJaSFhFw93Na3YbuJQWXR9ojk8bUbRcNoTiExN2m2QvrQsx8nDNvupW7NiFhArt50Vire4PvvYezEfhmT10zXfKwe38uxtz_iQa3jcuZx-o806b9O6vy2xNkh1sODwKz-HNSf2"/>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-1.5">
+<p class="text-sm font-semibold">James W.</p>
+<span class="text-xs text-primary font-bold">19 Tasks</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 58%"></div>
+</div>
+</div>
+</div>
+</div>
+<button class="mt-8 text-sm font-bold text-primary flex items-center justify-center hover:opacity-80 transition-opacity">
+                        View Team Full Report
+                        <span class="material-symbols-outlined text-lg ml-1" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Bottom Row: Task Status & Recent Activity -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Task Distribution -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_rgba(78,69,228,0.03)]">
+<h4 class="font-headline font-bold text-lg mb-6">Editorial Distribution</h4>
+<div class="flex items-center space-x-12">
+<!-- Donut Chart -->
+<div class="relative w-32 h-32 flex-shrink-0">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-surface-container-high" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-width="12"></circle>
+<circle class="text-primary" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-dasharray="339.292" stroke-dashoffset="101.78" stroke-width="12"></circle>
+<circle class="text-tertiary" cx="64" cy="64" fill="transparent" r="54" stroke="currentColor" stroke-dasharray="339.292" stroke-dashoffset="271.43" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-xl font-black font-headline">104</span>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Total</span>
+</div>
+</div>
+<!-- Legend -->
+<div class="space-y-4 flex-1">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-sm font-medium">Ready to Publish</span>
+</div>
+<span class="text-sm font-bold">70%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<div class="w-3 h-3 rounded-full bg-tertiary"></div>
+<span class="text-sm font-medium">In Revision</span>
+</div>
+<span class="text-sm font-bold">20%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-2">
+<div class="w-3 h-3 rounded-full bg-surface-container-highest"></div>
+<span class="text-sm font-medium">Backlog</span>
+</div>
+<span class="text-sm font-bold">10%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Productivity Card 1 (Contextual) -->
+<div class="bg-indigo-600 rounded-xl p-8 text-white relative overflow-hidden flex flex-col justify-between shadow-xl">
+<div class="absolute -right-4 -top-4 w-24 h-24 bg-indigo-500 rounded-full blur-2xl opacity-50"></div>
+<div class="relative z-10">
+<span class="material-symbols-outlined text-3xl mb-4" data-icon="auto_awesome">auto_awesome</span>
+<h5 class="font-headline font-bold text-lg leading-tight">Project Health is Exceptional</h5>
+<p class="text-indigo-100 text-sm mt-2">Team velocity has increased by 15% this sprint.</p>
+</div>
+<a class="relative z-10 mt-6 text-xs font-bold uppercase tracking-wider flex items-center hover:translate-x-1 transition-transform" href="#">
+                        Read Insights
+                        <span class="material-symbols-outlined text-sm ml-1" data-icon="east">east</span>
+</a>
+</div>
+<!-- Productivity Card 2 (Contextual) -->
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_4px_20px_rgba(78,69,228,0.03)] flex flex-col justify-between border-t-4 border-tertiary">
+<div>
+<h5 class="font-headline font-bold text-lg">Upcoming Milestone</h5>
+<p class="text-on-surface-variant text-sm mt-1">"Q4 Editorial Launch"</p>
+</div>
+<div class="mt-4">
+<div class="flex justify-between text-xs font-bold mb-1">
+<span>85% Complete</span>
+<span>3 Days Left</span>
+</div>
+<div class="h-2 w-full bg-surface-container-low rounded-full">
+<div class="h-full bg-tertiary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="flex -space-x-2 mt-4">
+<img alt="Avatar" class="w-6 h-6 rounded-full border-2 border-white" data-alt="team member avatar profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUSSGKE8yVMXs10bF7QoX5x6PiMuwK5bb-VL6xKtcIy-BnBNqLeEsVr2Lxk4SC1ijg_tInm1LwEj7DD1rZA9Pdo6XcFZT3XyBN-f8hBOzUt-ANn0mxPY1h6NkuRzEXFKbol6Ck-yzpGs_Meul-23OdO503yxdCtpHSxGNFHZxG-JFV1tLXPM5gJVUP4F-EJjfuYXDoZ5_VBs7v-DlQ_mjmyOxdmjObTXZLsDliuAOmMDTk0PFD9g_V2U76nlKxjM6uzgqAtCAJvtye"/>
+<img alt="Avatar" class="w-6 h-6 rounded-full border-2 border-white" data-alt="team member avatar profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNYQjk3BQaOwEZJsGVdpluZx53E4BA6MU9J8NMvTiuvE_vz6Yu1dMzdjSLM8MYv2eo6AU9gJOXOP36XX5fiHRtIessAreMFOmESUrkQ1RaEBWQFP1aR-lwk1wgTtiGana7xHcXZ31wg0ELgG_2z1rUmGa7dD0AhJL0AvDDxOhtWQdWSN_tERLMQnyMMQ6UoeFFUA6LU4WHxVui2k_WikhgjeZHm96J1EVYjAxr3OEf0G2NA0mdlbvxswd6zP7B6He11_jenWyUTkQh"/>
+<img alt="Avatar" class="w-6 h-6 rounded-full border-2 border-white" data-alt="team member avatar profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDM4pwfr-eEV6nmJgs43Xdz2r4UbMusUPs573FcfYmxAltuH1ERFaK0YU44CYJg8Fuzorg_9EwfztPwYyKRUH3BdFs166ZAJjLjffQunr0Hc1rIawEtpcv5GcrmHBXBN96hpXxl2JxNRD_NNK_xVp_xFjnNos3Htdpq297L8D_B1wfk-ya0YyyKDm4D0uCnuAePVxDAPR7uP57gCLBgxA1mdbzMk4ZnfXgbhVTSZU9aSRaQ_fezqTrmT19CSgdMGmwemOq2EbRHh1CI"/>
+<div class="w-6 h-6 rounded-full border-2 border-white bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-on-surface-variant">+4</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- FAB Suppression Logic: Not rendered on Analytics screen as per Shell Mandate -->
+</body></html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Dashboard | The Editorial Kanban</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "primary": "#4F46E5",
+                "background-light": "#fcf8fe",
+                "background-dark": "#121121",
+                "on-primary-fixed-variant": "#edeaff",
+                "primary-fixed-dim": "#5a52f0",
+                "surface-container-lowest": "#ffffff",
+                "primary-fixed": "#6760fd",
+                "primary-container": "#6760fd",
+                "error-dim": "#6b0221",
+                "on-error-container": "#6e0523",
+                "tertiary-fixed": "#fdd2fd",
+                "on-primary": "#fbf7ff",
+                "surface-bright": "#fcf8fe",
+                "inverse-primary": "#8582ff",
+                "secondary-container": "#e3e0f9",
+                "surface": "#fcf8fe",
+                "outline": "#7b7984",
+                "tertiary-dim": "#68486b",
+                "error-container": "#f97386",
+                "outline-variant": "#b3b0bc",
+                "background": "#fcf8fe",
+                "error": "#a8364b",
+                "surface-container-highest": "#e4e1ed",
+                "surface-dim": "#dcd8e4",
+                "on-secondary": "#fbf7ff",
+                "on-secondary-fixed": "#3e3d51",
+                "tertiary": "#755478",
+                "surface-container-high": "#eae6f1",
+                "surface-tint": "#4e45e4",
+                "on-background": "#32313b",
+                "surface-variant": "#e4e1ed",
+                "on-tertiary-container": "#654568",
+                "secondary-fixed": "#e3e0f9",
+                "primary-dim": "#4135d8",
+                "secondary": "#5e5d72",
+                "on-error": "#fff7f7",
+                "on-surface": "#32313b",
+                "inverse-surface": "#0e0e12",
+                "on-tertiary-fixed": "#513254",
+                "secondary-dim": "#525166",
+                "on-tertiary-fixed-variant": "#704e72",
+                "on-secondary-container": "#515064",
+                "on-tertiary": "#fff7fa",
+                "on-surface-variant": "#5f5e68",
+                "surface-container": "#f0ecf6",
+                "surface-container-low": "#f6f2fa",
+                "on-secondary-fixed-variant": "#5b596e",
+                "tertiary-fixed-dim": "#eec4ef",
+                "secondary-fixed-dim": "#d5d2eb",
+                "on-primary-fixed": "#ffffff",
+                "tertiary-container": "#fdd2fd",
+                "inverse-on-surface": "#9e9ca2",
+                "on-primary-container": "#000000"
+              },
+              "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+              },
+              "fontFamily": {
+                "display": ["Manrope"],
+                "headline": ["Manrope"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              }
+            },
+          },
+        }</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .indigo-gradient {
+            background: linear-gradient(135deg, #4e45e4 0%, #6760fd 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface dark:bg-background-dark dark:text-slate-100">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-[#fcf8fe] dark:bg-slate-950 backdrop-blur-xl bg-opacity-80 flex justify-between items-center px-8 py-3 w-full border-b border-indigo-50/10 font-['Manrope'] text-sm tracking-tight">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold tracking-tighter text-indigo-700 dark:text-indigo-400">The Editorial Kanban</span>
+<div class="hidden md:flex items-center space-x-6">
+<a class="text-indigo-700 dark:text-indigo-300 border-b-2 border-indigo-600 pb-1" href="#">Board</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-indigo-500 transition-colors" href="#">Analytics</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-indigo-500 transition-colors" href="#">Team</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-indigo-500 transition-colors" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+<input class="bg-surface-container-high border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 w-64 transition-all" placeholder="Search boards..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-full transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">dark_mode</span>
+</button><button class="p-2 text-slate-500 hover:bg-slate-100/50 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<img alt="User Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/10" data-alt="Close up portrait of a professional woman with a confident expression in a brightly lit modern office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSouCR851IG7XvF6Ig0o0fu-2PPaicAEWq6PEYEvxkDyqf4tBrwknvXVtfq8xVffDx0XF4HmXEWzsK1lDBUiNFm3ANh_fB1mHxMQDJqQv7diD9zriCdyorEIs-OUWZb21biMSd7IR7Q1Yw800T2Imse8rErIc3XYl3AYhowmc9zLVDEJFArVWxo_nUvwHDPGV92Css310u3Pc9W5F_WNAlADx4v0NS_78agULGUhQVWkuiAoEG2aRSPevcAFHG6-o0QzJJYSz_7Fee"/>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#f6f2fa] dark:bg-slate-900 flex flex-col h-full p-6 space-y-8 hidden lg:flex pt-20 dark:border-r dark:border-slate-800">
+<div class="space-y-1">
+<div class="flex items-center gap-3 px-2 mb-6">
+<div class="w-10 h-10 rounded-lg indigo-gradient flex items-center justify-center text-white font-bold">EK</div>
+<div>
+<p class="font-['Manrope'] font-bold text-sm text-indigo-700 dark:text-indigo-400">Main Workspace</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Editorial Flow</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-indigo-700 dark:text-indigo-300 font-bold bg-white/50 dark:bg-slate-800/50 rounded-lg translate-x-1 transition-transform" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="font-['Manrope'] font-medium text-sm">Board</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">bar_chart</span>
+<span class="font-['Manrope'] font-medium text-sm">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">group</span>
+<span class="font-['Manrope'] font-medium text-sm">Team</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="font-['Manrope'] font-medium text-sm">Settings</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto pt-6 border-t border-indigo-100/20">
+<button class="w-full py-3 px-4 indigo-gradient text-white rounded-lg font-['Manrope'] font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-opacity mb-6 shadow-lg shadow-indigo-200/50">
+<span class="material-symbols-outlined">add_circle</span>
+                New Project
+            </button>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:text-indigo-600 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">history</span>
+<span class="font-['Manrope'] font-medium text-sm">Activity Log</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-64 pt-20 px-8 pb-12 min-h-screen">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+<div>
+<h1 class="font-headline text-3xl font-extrabold text-on-surface tracking-tight mb-2 dark:text-white">Project Workspace</h1>
+<p class="font-body text-on-surface-variant max-w-lg dark:text-slate-400">Curate your editorial workflow. Manage, track, and publish with precision across your active project boards.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex -space-x-3">
+<img alt="Team member" class="w-10 h-10 rounded-full border-4 border-surface object-cover" data-alt="Close-up of a smiling young woman with warm natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAehWyWjivT6Ux0PPqxbO6B4nGaMMqwjovfDlsMcbb5c07y_M2sL4AKMp3A9xjmkvS3dXocaIn-DPhXv1CpLb7fMNxEa-XbHKzkvozrKsP_YjHPU8Da495DHRsMc8zRup4e95JJN9PhpoqsB08-MoexNxhjvuw_BNhr3p5KmGfKP_EVxEEsov38M-FBwGvSv0pjIYUUryFXgCQhz_iMVOYxg60zRANHVkX-TQX9GI2WNKBroGFH_xkooKX8ELI6x1HPsoPKkR2yJ5lY"/>
+<img alt="Team member" class="w-10 h-10 rounded-full border-4 border-surface object-cover" data-alt="Portrait of a man in professional attire with soft focus background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBU-Tb-cAWYH4zmxK4XF7s78kE4cLSAsmHRZUie1xl40JCpF3WxcxBBMC5vgGzVUggwKELIGfnMxy04sdKFWPDonEMZDTURc_EIP01aEsNYrlVIdSGFJkDvotb9pkrJ94zN_TU6ujtQzGlhV_RocXSifBSBk2XBzRTT3J60Q3JFdRz7IlDAalz-00_kUtXLBZZhZCSxS_C9r37rYP_b2nDd6ZLW5WOVyJgIUjSDB3SLZIn5Yh5Fv74I89SQDc9Qlt4HS893PmLNFqpN"/>
+<img alt="Team member" class="w-10 h-10 rounded-full border-4 border-surface object-cover" data-alt="Headshot of a middle aged man with glasses and friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLYwbOtvPfTmyKIIxX5y3AGMa53QY3VqHYa1e_kofoKwdp1EHmB2H39zwgGFDhFlYn9C2kkHFW6wnNn1fMeyEm0a1gqr4HI7vUI1U-Bsxmej6r_Rzxo_LpSaud--3hwuA7KtQ44bscjDx_wGPMHeM611ZnIhcfvFaFgxYfWLO0OD58wrFSh6RL4zxESGL0Y8bOW4W3Xa2TTCxMh3TV1osyIb9gHdoClAw0kX5bcKGshAD5ARb5Q29Oi2ymlkPkAAcUrN40A-phlA09"/>
+<div class="w-10 h-10 rounded-full border-4 border-surface bg-surface-container flex items-center justify-center text-xs font-bold text-on-surface-variant">+12</div>
+</div>
+<button class="bg-surface-container-high hover:bg-surface-container-highest text-on-surface px-4 py-2 rounded-lg font-medium text-sm transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">filter_list</span>
+                    Filter
+                </button>
+</div>
+</div>
+<!-- Dashboard Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<!-- Create New Board (Dashed Card) -->
+<button class="group relative h-64 rounded-xl border-2 border-dashed border-indigo-200/50 hover:border-primary/40 hover:bg-primary/[0.02] flex flex-col items-center justify-center transition-all duration-300">
+<div class="w-14 h-14 rounded-full bg-indigo-50 flex items-center justify-center text-primary group-hover:scale-110 transition-transform duration-300 mb-4">
+<span class="material-symbols-outlined text-3xl">add</span>
+</div>
+<p class="font-headline font-bold text-lg text-indigo-700">Create New Board</p>
+<p class="text-on-surface-variant text-sm mt-1">Start a fresh editorial cycle</p>
+</button>
+<!-- Board Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col justify-between group hover:shadow-[0_20px_50px_rgba(78,69,228,0.08)] transition-all duration-300 border border-transparent hover:border-primary/5 dark:bg-slate-900/50 dark:border-slate-800">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 rounded-lg bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined">auto_stories</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-on-surface mb-2 dark:text-white">Summer Anthology 2024</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed mb-6 dark:text-slate-400">Coordination of long-form essays, poetry submissions, and seasonal photography curation for the print edition.</p>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container">
+<div class="flex -space-x-2">
+<img alt="Member" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Young artist woman with messy bun looking thoughtful" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdt8zX79T0h850crk0wWB-xw3sEEF6uiBJbnwT1q-gWhJ0gcNY3iUD7_ww26pZZI4vRRq8B9Ps8FUl84lcVcP2T1ztYuGlabYOYvVsjpw3zDotYFIrisuj8v-YhHCPCf18u3eSVKEnHXWw6_FNj54janRBo85k4jZMLEUicBxfjp7BjV3ihj5H0xWUbRWirQ_qUB1qPSPJiRjcZyAElU-N1u5rmZRTI-fWJoub-GgZmPkE3lx_Ef-JK_XRVG-vmY4m88QTBKPVb33j"/>
+<img alt="Member" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Portrait of a young creative professional man in casual wear" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkOELB-2-T34glp2xg6DxsNc-TFUjBKGrQxFrp6YDuKhz9WO7yBJM2RBTvJXlfiMlcaVJ8Q8ObByNp8LbWM7mmqGmcRCRtTRXNmrdpllZGRgQ8wlTXqPjBxfjLZ8zY7x57wohSl9ZbY6rDIsTEcaS_EgAkb2qOxLLYI-kR1B_yo6zNQTsKSo4auadb-70PKB82MT4XdEJbUHtGkkFe-bvTfrOBeaAKcT-UAoWxXmVW-zcdx8EFiOAsy4p1JVZqvJ7Gl80iv0JQRZxl"/>
+</div>
+<div class="flex items-center text-on-surface-variant gap-4">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-base">task_alt</span>
+<span>24/40</span>
+</div>
+<span class="material-symbols-outlined text-lg cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+</div>
+</div>
+<!-- Board Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col justify-between group hover:shadow-[0_20px_50px_rgba(78,69,228,0.08)] transition-all duration-300 border border-transparent hover:border-primary/5 dark:bg-slate-900/50 dark:border-slate-800">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 rounded-lg bg-indigo-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">campaign</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-surface-container-highest text-on-surface-variant text-[10px] font-bold uppercase tracking-wider">Planning</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-on-surface mb-2 dark:text-white">Brand Identity Refresh</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed mb-6 dark:text-slate-400">Visual guidelines, typography system audit, and social media template redesign for the upcoming quarter.</p>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container">
+<div class="flex -space-x-2">
+<img alt="Member" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Man in high-tech studio environment with soft blue light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAolQ_MThZ9VU_PPz2hc8I4B6LVrDmGZxTfMW6U3GVfrO4MC94Se8rNVqIlpF9DwFdwxQVhTIYJQsQ3Tj3ncHpgdWKwSqGFefJxtAE7Hu61boE3HPdYnu9jBdxMCHABVy8wIkF4NhNKNofkL_N6u_QtwVWCrAXua7w63ry66E2GQqo6pNz-1cYsrbJVzRU4Xrw-m2TILV0ALKnfiZytqF0cGWn0lj3LVrHmqQBIUw-0g8yfq0Mmqa1baoecZSmDsOg4L8KHOzkNaX4n"/>
+<img alt="Member" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Professional woman in business casual looking at camera with friendly smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxcevoL0oSJpk5kY2zpJZXu-jjqOZG3sVg9XPe7YBU0zBVbsOfEtCI_aKOUMQIuOiXYY16gl4TspZUiMu-GO-x0Qm_1np7QduN1ATRpJ0zRNUu_QbkkHB5rKJI6bEXSK3ZLqH5BGEsmyAI-48kxUyWA14-7n-tpLAHoEYISMuCs4MG8_YPKMdlvCUYWJP6otYZJ29ZxDjpd1OA_DlwXE6Ndu-2sJOqm74QuOvEx2E9-UVOG44zavdNtfCWyKYOJ0ohO0LBXgqa1UGB"/>
+<img alt="Member" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Portrait of a young woman with curly hair in a bright studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY2YboqiPHJYFVxjH7kbcj1y01YEJIwRn0u-Rf3MXAMbwxjbrVbe7H7U9sJP56uyDPrly7ynYrQQOh2UKERFynX03ug8guCPY39DdD2u_u19aSjaWYv-YOdp8B1kBwcso1ii44yRSd2wZiro1ENAprqtRUzu_zsv8vN_rEp_tQD9UTJf9NjR_bJZe56FKG279W4j4TVHGemFdy6VeETQZaRk56RhNJsBClsmfPLmRKISUPDHb5P23A-_BiPCjHJJ5GF3qfNcSMq6B1"/>
+</div>
+<div class="flex items-center text-on-surface-variant gap-4">
+<div class="flex items-center gap-1 text-xs text-error font-medium">
+<span class="material-symbols-outlined text-base">priority_high</span>
+<span>Critical</span>
+</div>
+<span class="material-symbols-outlined text-lg cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+</div>
+</div>
+<!-- Board Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col justify-between group hover:shadow-[0_20px_50px_rgba(78,69,228,0.08)] transition-all duration-300 border border-transparent hover:border-primary/5 dark:bg-slate-900/50 dark:border-slate-800">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 rounded-lg bg-orange-50 flex items-center justify-center text-orange-600">
+<span class="material-symbols-outlined">podcasts</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-wider">Active</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-on-surface mb-2 dark:text-white">Podcast: The Creative Core</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed mb-6 dark:text-slate-400">Scripting and post-production schedule for Season 4 interviews with industry-leading designers and editors.</p>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container">
+<div class="flex -space-x-2">
+<img alt="Member" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Close-up of a smiling young man in a home office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTAFQ7zQiLL77HguY7AZ_bRSn2PtzN2p6EBQXxsQRxNzj5GLlY56SxcKSTUJ7JYSy7MWUjt-qKCfM7LlsQou8zA4RsbLrwMsMxDOs0RKU6nlHKErXk_43jullgGzn-nHEn_jWH6HMSmloj0YC7EdnFe971HsSB_5oCilgRZ3DDGj0aS20RCCtfme1A1rdN1m3umIf3_egt0tA_e0EJIqDDPoG3aTmmmrL43KJ0Kw7HSgWVHu-0BPZN8y4Etl-9OUVwFZVEmHF6kiin"/>
+</div>
+<div class="flex items-center text-on-surface-variant gap-4">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-base">schedule</span>
+<span>Next: Tue</span>
+</div>
+<span class="material-symbols-outlined text-lg cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+</div>
+</div>
+<!-- Board Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col justify-between group hover:shadow-[0_20px_50px_rgba(78,69,228,0.08)] transition-all duration-300 border border-transparent hover:border-primary/5 dark:bg-slate-900/50 dark:border-slate-800">
+<div>
+<div class="flex items-start justify-between mb-4">
+<div class="w-12 h-12 rounded-lg bg-green-50 flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined">news</span>
+</div>
+<span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-[10px] font-bold uppercase tracking-wider">Completed</span>
+</div>
+<h3 class="font-headline font-bold text-xl text-on-surface mb-2 dark:text-white">Weekly Newsletter Flow</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed mb-6 dark:text-slate-400">Automation of content ingestion and layout drafting for our 50k+ subscriber weekly editorial digest.</p>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-surface-container">
+<div class="flex -space-x-2">
+<img alt="Member" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Portrait of a black woman in minimalist studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzcwtTJqt2PYwVAx15rspCXd-1qBpbzglx3AOhbkRnizQn87vFfyiT7y7PFa5LWF17NOdV1LUhuQ2X-ZsxhyCV_IILay86H9LqM_ud-Ym1Tk02pBr5u-_1llz0tnASgRdaHJkT3LRAKuCIQCguHqSt1HR8kTywsQHpz47XhAbImtfLVk7kG3bfvSOc80byylZrSNrGZffXlJZw7uBRW45D1WkeeftnWdSJahCqo4ib-DKfROKA_ByhJNfwhMWAnmONDUnKrP7K9vyT"/>
+<img alt="Member" class="w-8 h-8 rounded-full border-2 border-white object-cover" data-alt="Professional man in a modern office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfdN7X2L2cgsmYK5_3UcpDtc3SQU1POJoqsSdgSe4ioQvBFRzl6NFODCZg-JRf9vig9KL6b2p1CVrxhTkumVJu7IlcO-IZ1TZCH4EdS4vcznngAudUxAUUv82KacEMCUiRTjCLfQrld_0cGP7GGSamMveerFDPi5fhV0VNAOwEAMq3K754enQ-JjMD0IdPzolpcJEOxdItf3cHFrOmBGLqqlkkm0KDAfU9IFZVTV2Voz7imsbhYfulKwdbDCR8MtKFiJNZ4r-urQPR"/>
+</div>
+<div class="flex items-center text-on-surface-variant gap-4">
+<div class="flex items-center gap-1 text-xs">
+<span class="material-symbols-outlined text-base">stars</span>
+<span>Archive Ready</span>
+</div>
+<span class="material-symbols-outlined text-lg cursor-pointer hover:text-primary transition-colors">more_vert</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Project Stats (Asymmetric Bento Element) -->
+<div class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-6">
+<div class="lg:col-span-8 bg-indigo-50/30 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1">
+<h2 class="font-headline font-extrabold text-2xl text-indigo-900 mb-2">Weekly Productivity Insight</h2>
+<p class="text-indigo-700/70 mb-6">Your team has moved <span class="font-bold text-indigo-900">42 tasks</span> to 'Published' this week. You're outperforming last week by 15%.</p>
+<div class="flex gap-4">
+<div class="flex flex-col">
+<span class="text-3xl font-black text-indigo-800 tracking-tighter">88%</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-indigo-400">Completion Rate</span>
+</div>
+<div class="w-px h-10 bg-indigo-200"></div>
+<div class="flex flex-col">
+<span class="text-3xl font-black text-indigo-800 tracking-tighter">1.2d</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-indigo-400">Avg Lead Time</span>
+</div>
+</div>
+</div>
+<div class="w-full md:w-64 h-40 rounded-xl bg-white/50 backdrop-blur-sm border border-indigo-100 flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent"></div>
+<!-- Decorative Graph Placeholder -->
+<svg class="w-full h-full px-4" viewbox="0 0 200 100">
+<path d="M0,80 Q25,75 50,60 T100,65 T150,30 T200,45 L200,100 L0,100 Z" fill="url(#grad)" opacity="0.2"></path>
+<path d="M0,80 Q25,75 50,60 T100,65 T150,30 T200,45" fill="none" stroke="#4e45e4" stroke-width="3"></path>
+<defs>
+<lineargradient id="grad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#4e45e4;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#4e45e4;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+</div>
+<div class="lg:col-span-4 bg-tertiary-container/30 rounded-2xl p-8 flex flex-col justify-between">
+<div>
+<h3 class="font-headline font-bold text-lg text-on-tertiary-container mb-4">Workspace Tips</h3>
+<ul class="space-y-4">
+<li class="flex gap-3 text-sm text-on-tertiary-container/80">
+<span class="material-symbols-outlined text-tertiary">lightbulb</span>
+<span>Use the 'Ghost Move' to drag tasks between boards instantly.</span>
+</li>
+<li class="flex gap-3 text-sm text-on-tertiary-container/80">
+<span class="material-symbols-outlined text-tertiary">keyboard_command_key</span>
+<span>Press Cmd + K to open the global editorial search.</span>
+</li>
+</ul>
+</div>
+<button class="mt-6 text-tertiary font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">
+                    Explore all shortcuts
+                    <span class="material-symbols-outlined">arrow_right_alt</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Modal Mockup (Hidden by default, triggered by 'Create New Board') -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-on-surface/20 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+<div class="bg-surface-container-lowest w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden scale-95 transition-transform duration-300 dark:bg-slate-900/50 dark:border-slate-800">
+<div class="p-8">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h2 class="font-headline font-extrabold text-2xl text-on-surface">New Board</h2>
+<p class="text-on-surface-variant text-sm">Define your project parameters</p>
+</div>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="space-y-6">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Project Title</label>
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline" placeholder="e.g. Q4 Content Strategy" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Description</label>
+<textarea class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline" placeholder="Briefly describe the editorial scope..." rows="3"></textarea>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Type</label>
+<select class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all">
+<option>Kanban Board</option>
+<option>Editorial Calendar</option>
+<option>Asset Library</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-2">Privacy</label>
+<select class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary/20 transition-all">
+<option>Team Only</option>
+<option>Private</option>
+<option>Public</option>
+</select>
+</div>
+</div>
+<div class="pt-4 flex items-center justify-end gap-3">
+<button class="px-6 py-3 font-bold text-sm text-on-surface-variant hover:text-on-surface transition-colors" type="button">Cancel</button>
+<button class="indigo-gradient px-8 py-3 rounded-lg text-white font-bold text-sm shadow-lg shadow-indigo-200/50 hover:opacity-90 transition-opacity" type="button">Launch Board</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</body></html>

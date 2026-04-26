@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Editorial Kanban | Sign In</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#4F46E5",
+          "background-light": "#fcf8fe",
+          "background-dark": "#121121",
+        },
+        fontFamily: {
+          "display": ["Manrope"],
+          "headline": ["Manrope"],
+          "body": ["Inter"],
+          "label": ["Inter"]
+        },
+        borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+      },
+    },
+  }</script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf8fe;
+        }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .jewel-button {
+            background: linear-gradient(135deg, #4e45e4 0%, #6760fd 100%);
+        }
+    </style>
+</head>
+<body class="flex min-h-screen items-center justify-center p-6 bg-surface dark:bg-background-dark pt-20"><nav class="fixed top-0 w-full z-50 bg-[#fcf8fe] dark:bg-slate-950 backdrop-blur-xl bg-opacity-80 flex justify-between items-center px-8 py-3 w-full border-b border-indigo-50/10 font-['Manrope'] text-sm tracking-tight">
+<div class="flex items-center gap-8">
+<div class="text-xl font-bold tracking-tighter text-indigo-700 dark:text-indigo-400">The Editorial Kanban</div>
+<div class="hidden md:flex items-center bg-slate-100/50 dark:bg-slate-800/50 px-3 py-1.5 rounded-lg">
+<span class="material-symbols-outlined text-slate-400 text-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-xs w-48 text-slate-600 dark:text-slate-300 dark:bg-slate-800 dark:text-white" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors text-slate-500 dark:text-slate-400" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<img alt="User Profile" class="w-8 h-8 rounded-full border border-indigo-100 dark:border-indigo-900 shadow-sm hover:scale-95 duration-200 ease-out cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADu1vurPESEO93im_YypGQkP-krLMaQeNHKlp6n5U_MORzpEhnG_psmHijPedAKlCzXJEWe1SXAjuHEq_IVuymvaiiBc89SScXpsZfe7_zQFtEvObZTUU_TdZnfoAC2Qc7NWfplXH8JvynAtn6XzVE1soWtAlJ-gS7_dhkUNJGFb4A6I7sgd-imuTufyTdau1p2dkOT3QMJQ2oob-XPN2b2LSAbMHeOQvgwiOu0RJ_Ige_xzAWLXDdMu9hhoHzG88r4ppvdmUiUKhe"/>
+</div>
+</nav>
+<div class="w-full max-w-md">
+<!-- Brand Identity Anchor -->
+<div class="mb-12 text-center">
+<h1 class="font-manrope text-3xl font-black tracking-tighter text-primary">
+                The Editorial Kanban
+            </h1>
+<p class="mt-2 text-on-surface-variant font-medium text-sm tracking-tight dark:text-slate-400">
+                Curate your productivity.
+            </p>
+</div>
+<!-- Main Auth Card -->
+<div class="bg-surface-container-lowest rounded-xl p-10 shadow-[0_20px_50px_rgba(78,69,228,0.06)] relative overflow-hidden dark:bg-slate-900">
+<!-- Atmospheric Aesthetic Accent (Top Gradient Bar) -->
+<div class="absolute top-0 left-0 w-full h-1 jewel-button opacity-80"></div>
+<div class="flex flex-col space-y-8">
+<header>
+<h2 class="font-manrope text-2xl font-bold text-on-surface dark:text-slate-100">Welcome back</h2>
+<p class="text-on-surface-variant text-sm mt-1 dark:text-slate-400">Please enter your details to sign in.</p>
+</header>
+<form class="space-y-6">
+<!-- Input Group: Email -->
+<div class="space-y-2">
+<label class="block text-xs font-semibold uppercase tracking-widest text-on-surface-variant ml-1 dark:text-slate-400" for="email">
+                            Email Address
+                        </label>
+<div class="relative group">
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3.5 text-on-surface text-sm focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline-variant dark:text-slate-100 dark:bg-slate-800 dark:text-white" id="email" placeholder="name@editorial.com" type="email"/>
+</div>
+</div>
+<!-- Input Group: Password -->
+<div class="space-y-2">
+<div class="flex justify-between items-center px-1">
+<label class="block text-xs font-semibold uppercase tracking-widest text-on-surface-variant dark:text-slate-400" for="password">
+                                Password
+                            </label>
+<a class="text-[11px] font-bold text-primary hover:text-primary-dim transition-colors" href="#">
+                                Forgot?
+                            </a>
+</div>
+<div class="relative group">
+<input class="w-full bg-surface-container-high border-none rounded-lg px-4 py-3.5 text-on-surface text-sm focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline-variant dark:text-slate-100 dark:bg-slate-800 dark:text-white" id="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- CTA Primary Action -->
+<button class="jewel-button w-full py-4 rounded-lg text-on-primary font-manrope font-bold text-sm tracking-wide shadow-lg shadow-primary/20 hover:scale-[1.01] active:scale-[0.98] transition-all" type="submit">
+                        Sign In to Workspace
+                    </button>
+</form>
+<!-- Social/Alternative Divider -->
+<div class="relative flex items-center py-2">
+<div class="flex-grow border-t border-surface-container-highest"></div>
+<span class="flex-shrink mx-4 text-xs font-bold text-outline-variant uppercase tracking-widest">or continue with</span>
+<div class="flex-grow border-t border-surface-container-highest"></div>
+</div>
+<!-- Secondary Actions -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center space-x-2 bg-surface-container-low border border-outline-variant/10 hover:bg-surface-container-high transition-colors py-3 rounded-lg">
+<span class="material-symbols-outlined text-lg" data-icon="google">google</span>
+<span class="text-xs font-semibold text-on-surface dark:text-slate-100">Google</span>
+</button>
+<button class="flex items-center justify-center space-x-2 bg-surface-container-low border border-outline-variant/10 hover:bg-surface-container-high transition-colors py-3 rounded-lg">
+<span class="material-symbols-outlined text-lg" data-icon="apple">ios</span>
+<span class="text-xs font-semibold text-on-surface dark:text-slate-100">Apple</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Footer Toggle -->
+<div class="mt-8 text-center">
+<p class="text-on-surface-variant text-sm font-medium dark:text-slate-400">
+                Don't have an account? 
+                <a class="text-primary font-bold hover:underline ml-1" href="#">Create a Workspace</a>
+</p>
+</div>
+</div>
+<!-- Background Decorative Elements -->
+<div class="fixed -z-10 top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full"></div>
+<div class="absolute -bottom-[10%] -right-[10%] w-[30%] h-[30%] bg-tertiary/5 blur-[100px] rounded-full"></div>
+</div>
+</body></html>

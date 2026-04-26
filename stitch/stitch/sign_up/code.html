@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign Up | Editorial Kanban</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#fcf8fe",
+                      "secondary": "#5e5d72",
+                      "on-tertiary": "#fff7fa",
+                      "surface-container-high": "#eae6f1",
+                      "secondary-fixed": "#e3e0f9",
+                      "inverse-primary": "#8582ff",
+                      "secondary-container": "#e3e0f9",
+                      "surface-container-highest": "#e4e1ed",
+                      "surface-variant": "#e4e1ed",
+                      "surface-tint": "#4e45e4",
+                      "on-primary-fixed": "#ffffff",
+                      "error-dim": "#6b0221",
+                      "inverse-surface": "#0e0e12",
+                      "tertiary": "#755478",
+                      "on-secondary-container": "#515064",
+                      "inverse-on-surface": "#9e9ca2",
+                      "surface-dim": "#dcd8e4",
+                      "primary-fixed-dim": "#5a52f0",
+                      "secondary-fixed-dim": "#d5d2eb",
+                      "tertiary-dim": "#68486b",
+                      "on-tertiary-container": "#654568",
+                      "on-secondary": "#fbf7ff",
+                      "tertiary-fixed-dim": "#eec4ef",
+                      "on-error-container": "#6e0523",
+                      "outline": "#7b7984",
+                      "secondary-dim": "#525166",
+                      "surface-container-low": "#f6f2fa",
+                      "on-surface-variant": "#5f5e68",
+                      "error-container": "#f97386",
+                      "on-primary": "#fbf7ff",
+                      "on-primary-container": "#000000",
+                      "on-surface": "#32313b",
+                      "primary-fixed": "#6760fd",
+                      "on-secondary-fixed-variant": "#5b596e",
+                      "surface-container": "#f0ecf6",
+                      "outline-variant": "#b3b0bc",
+                      "on-tertiary-fixed-variant": "#704e72",
+                      "on-secondary-fixed": "#3e3d51",
+                      "on-error": "#fff7f7",
+                      "on-tertiary-fixed": "#513254",
+                      "surface-bright": "#fcf8fe",
+                      "on-primary-fixed-variant": "#edeaff",
+                      "primary-dim": "#4135d8",
+                      "surface-container-lowest": "#ffffff",
+                      "primary": "#4e45e4",
+                      "tertiary-fixed": "#fdd2fd",
+                      "primary-container": "#6760fd",
+                      "tertiary-container": "#fdd2fd",
+                      "error": "#a8364b",
+                      "on-background": "#32313b",
+                      "background": "#fcf8fe"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope", "sans-serif"],
+                      "body": ["Inter", "sans-serif"],
+                      "label": ["Inter", "sans-serif"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3 {
+            font-family: 'Manrope', sans-serif;
+        }
+        .editorial-shadow {
+            box-shadow: 0 20px 50px rgba(78, 69, 228, 0.08);
+        }
+        .indigo-gradient {
+            background: linear-gradient(135deg, #4e45e4 0%, #6760fd 100%);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex items-center justify-center p-6 sm:p-12">
+<div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Branding Section (Intentional Asymmetry) -->
+<div class="lg:col-span-5 hidden lg:block space-y-8">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 indigo-gradient rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-2xl" data-icon="grid_view">grid_view</span>
+</div>
+<span class="font-headline font-black text-2xl tracking-tight text-primary-fixed-dim">Editorial Kanban</span>
+</div>
+<div class="space-y-4">
+<h1 class="text-5xl font-extrabold text-on-surface leading-tight">
+                    The Disciplined <br/>
+<span class="text-primary">Curator's</span> Canvas.
+                </h1>
+<p class="text-lg text-on-surface-variant max-w-sm leading-relaxed">
+                    Elevate your task management into a premium editorial experience. Experience productivity with atmospheric depth.
+                </p>
+</div>
+<div class="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl">
+<img class="object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="Modern minimalist workspace with a clean wooden desk, a sleek laptop, and soft morning light entering through a large window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyeeb6gFD4mi-RoUn7srewhrwmtF2hLAO_07jBUUP1ZcvfNs1VambbXR52Xtq2wZI6XIRD0w1ztRjf1ZPLqBm_Gen2WHYZUJSFnhyB26cmKF0YwSAmrvbp79h84UCepEQaE5miOank87cuUW2o_OnCgWby0K1F-XGS0VARjKKy_riR8vLCigzaLJIgTxsFm-Z66PhQIYzfUyxzzonrxTaZWv8mW_FS-nSUmi7BX1--Fql7hwuOvOUjaDhN4Ncy-piI3shOh9XqEfKp"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
+</div>
+</div>
+<!-- Sign Up Card -->
+<div class="lg:col-span-7 flex justify-center lg:justify-end">
+<div class="bg-surface-container-lowest editorial-shadow rounded-xl p-8 sm:p-12 w-full max-w-md transition-all">
+<div class="mb-10 text-center lg:text-left">
+<h2 class="text-3xl font-bold text-on-surface mb-2">Create Account</h2>
+<p class="text-on-surface-variant text-sm font-medium">Start your journey with Editorial Kanban.</p>
+</div>
+<form class="space-y-6">
+<!-- Name Input -->
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Full Name</label>
+<div class="relative group">
+<input class="w-full bg-surface-container-high border-none rounded-xl py-4 px-5 text-on-surface placeholder-on-surface-variant/50 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Julianne Moore" type="text"/>
+</div>
+</div>
+<!-- Email Input -->
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Email Address</label>
+<div class="relative group">
+<input class="w-full bg-surface-container-high border-none rounded-xl py-4 px-5 text-on-surface placeholder-on-surface-variant/50 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="julianne@editorial.com" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant px-1">Password</label>
+<div class="relative group">
+<input class="w-full bg-surface-container-high border-none rounded-xl py-4 px-5 text-on-surface placeholder-on-surface-variant/50 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full indigo-gradient text-on-primary font-bold py-4 rounded-lg shadow-lg shadow-primary/20 active:scale-[0.98] transition-transform flex items-center justify-center gap-2" type="submit">
+<span>Initialize Workspace</span>
+<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<div class="my-8 flex items-center gap-4">
+<div class="h-[1px] flex-1 bg-surface-variant"></div>
+<span class="text-xs font-bold text-outline uppercase tracking-widest">Or Continue With</span>
+<div class="h-[1px] flex-1 bg-surface-variant"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container rounded-xl hover:bg-surface-container-high transition-colors active:scale-95 duration-150">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"></path>
+</svg>
+<span class="text-sm font-semibold">Google</span>
+</button>
+<button class="flex items-center justify-center gap-3 py-3 px-4 bg-surface-container rounded-xl hover:bg-surface-container-high transition-colors active:scale-95 duration-150">
+<svg class="w-5 h-5 fill-on-surface" viewbox="0 0 384 512">
+<path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"></path>
+</svg>
+<span class="text-sm font-semibold">Apple</span>
+</button>
+</div>
+<div class="mt-12 text-center">
+<p class="text-on-surface-variant text-sm">
+                        Already have an account? 
+                        <a class="text-primary font-bold hover:underline underline-offset-4 decoration-2" href="#">Sign in to Board</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Elements (Ambient Atmosphere) -->
+<div class="fixed top-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-primary-fixed/5 blur-[120px] -z-10"></div>
+<div class="fixed bottom-[-5%] left-[-5%] w-[30%] h-[30%] rounded-full bg-tertiary-fixed/10 blur-[100px] -z-10"></div>
+</body></html>

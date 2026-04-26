@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings - Editorial Kanban</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#fcf8fe",
+                    "secondary": "#5e5d72",
+                    "on-tertiary": "#fff7fa",
+                    "surface-container-high": "#eae6f1",
+                    "secondary-fixed": "#e3e0f9",
+                    "inverse-primary": "#8582ff",
+                    "secondary-container": "#e3e0f9",
+                    "surface-container-highest": "#e4e1ed",
+                    "surface-variant": "#e4e1ed",
+                    "surface-tint": "#4e45e4",
+                    "on-primary-fixed": "#ffffff",
+                    "error-dim": "#6b0221",
+                    "inverse-surface": "#0e0e12",
+                    "tertiary": "#755478",
+                    "on-secondary-container": "#515064",
+                    "inverse-on-surface": "#9e9ca2",
+                    "surface-dim": "#dcd8e4",
+                    "primary-fixed-dim": "#5a52f0",
+                    "secondary-fixed-dim": "#d5d2eb",
+                    "tertiary-dim": "#68486b",
+                    "on-tertiary-container": "#654568",
+                    "on-secondary": "#fbf7ff",
+                    "tertiary-fixed-dim": "#eec4ef",
+                    "on-error-container": "#6e0523",
+                    "outline": "#7b7984",
+                    "secondary-dim": "#525166",
+                    "surface-container-low": "#f6f2fa",
+                    "on-surface-variant": "#5f5e68",
+                    "error-container": "#f97386",
+                    "on-primary": "#fbf7ff",
+                    "on-primary-container": "#000000",
+                    "on-surface": "#32313b",
+                    "primary-fixed": "#6760fd",
+                    "on-secondary-fixed-variant": "#5b596e",
+                    "surface-container": "#f0ecf6",
+                    "outline-variant": "#b3b0bc",
+                    "on-tertiary-fixed-variant": "#704e72",
+                    "on-secondary-fixed": "#3e3d51",
+                    "on-error": "#fff7f7",
+                    "on-tertiary-fixed": "#513254",
+                    "surface-bright": "#fcf8fe",
+                    "on-primary-fixed-variant": "#edeaff",
+                    "primary-dim": "#4135d8",
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#4e45e4",
+                    "tertiary-fixed": "#fdd2fd",
+                    "primary-container": "#6760fd",
+                    "tertiary-container": "#fdd2fd",
+                    "error": "#a8364b",
+                    "on-background": "#32313b",
+                    "background": "#fcf8fe"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm dark:shadow-none flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<span class="font-manrope font-extrabold text-indigo-700 dark:text-indigo-300 text-xl tracking-tight">Editorial Kanban</span>
+<div class="hidden md:flex items-center space-x-6">
+<nav class="flex space-x-1">
+<a class="px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors rounded-lg font-medium text-sm" href="#">Board</a>
+<a class="px-3 py-2 text-slate-500 dark:text-slate-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors rounded-lg font-medium text-sm" href="#">Team</a>
+<a class="px-3 py-2 text-indigo-700 dark:text-indigo-300 font-semibold transition-colors rounded-lg text-sm" href="#">Settings</a>
+</nav>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">search</span>
+<input class="bg-surface-container-high border-none rounded-full pl-10 pr-4 py-1.5 text-sm focus:ring-2 focus:ring-primary/20 w-64 transition-all" placeholder="Search tasks..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-indigo-50 rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-primary/10" data-alt="Close-up portrait of a professional woman with a clean, minimalist aesthetic and soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC88CH70cWJTkkmBstoPYwpCsjGFWgr1dgFLVozNs_DFxumK29kdmdsf8k_BdaX5YU9XB-yeFSG2vzSEFUecKQ8IeQjyusTBPw48nTZx6AjFYl2Tixy-zizuENt_UTCE1HkmMOZ1_tAcN8Vuy1Yn_Rkr3ZtDl8qcC9bBXA23_My4qkTQ8Zt6cMtyD2zzSaKSmUTE0fw4Q3cG7GbBEALFkA_aqYGUy8XnAH89Htzj9red5pZ3iDxnv4nWppnMnOMyYYs0NIqogZ-BUsB"/>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 z-50 bg-slate-50 dark:bg-slate-950 flex flex-col h-full py-8 px-4 space-y-6 hidden md:flex">
+<div class="flex items-center gap-3 px-2 mb-4">
+<div class="w-10 h-10 bg-primary-container rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">edit_note</span>
+</div>
+<div>
+<h2 class="font-manrope font-black text-indigo-700 dark:text-indigo-300 text-lg leading-tight">Editorial</h2>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Task Curator</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">grid_view</span>
+<span class="font-inter text-sm font-medium">Board</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">group</span>
+<span class="font-inter text-sm font-medium">Team</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 transition-all rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">analytics</span>
+<span class="font-inter text-sm font-medium">Analytics</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-indigo-700 dark:text-indigo-300 font-bold border-r-2 border-indigo-600 dark:border-indigo-400 bg-indigo-50/50 dark:bg-indigo-900/20 transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:translate-x-1 duration-200">settings</span>
+<span class="font-inter text-sm font-medium">Settings</span>
+</a>
+</nav>
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary py-3 rounded-lg font-semibold text-sm shadow-md hover:shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Task
+            </button>
+<div class="pt-6 border-t border-slate-200/50 dark:border-slate-800/50 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-lg">contact_support</span>
+<span class="text-sm font-medium">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-error hover:bg-red-50 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+<span class="text-sm font-medium">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 min-h-screen bg-surface p-8 lg:p-12">
+<div class="max-w-5xl mx-auto">
+<header class="mb-12">
+<h1 class="text-4xl font-extrabold text-on-surface tracking-tight mb-2">Settings</h1>
+<p class="text-secondary text-lg">Manage your personal preferences and workspace configuration.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Navigation Sidebar (Local) -->
+<nav class="lg:col-span-3 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-surface-container-lowest shadow-sm rounded-xl text-primary font-bold transition-all" href="#profile">
+<span class="material-symbols-outlined text-xl">person</span>
+<span class="text-sm">Profile Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-all rounded-xl text-on-surface-variant font-medium" href="#workspace">
+<span class="material-symbols-outlined text-xl">view_quilt</span>
+<span class="text-sm">Workspace</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-all rounded-xl text-on-surface-variant font-medium" href="#notifications">
+<span class="material-symbols-outlined text-xl">notifications</span>
+<span class="text-sm">Notifications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 hover:bg-surface-container transition-all rounded-xl text-on-surface-variant font-medium" href="#permissions">
+<span class="material-symbols-outlined text-xl">shield_person</span>
+<span class="text-sm">Permissions</span>
+</a>
+</nav>
+<!-- Settings Sections -->
+<div class="lg:col-span-9 space-y-8">
+<!-- Profile Settings Section -->
+<section class="bg-surface-container-low rounded-3xl p-8 space-y-8" id="profile">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-on-surface">Profile Settings</h2>
+<button class="text-primary font-semibold text-sm hover:underline">Edit Profile</button>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-start">
+<div class="relative group">
+<div class="w-32 h-32 rounded-3xl overflow-hidden shadow-lg">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="High resolution studio portrait of a woman with professional attire against a neutral soft lilac background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCL5ummb_OA0d8za-qhqeLR_NzF2cxI1hcedx0OcaZ8sO0lX1DykD1XcvsBxqQjy0K_zJKQiKQHf30-6DULCIeooKXd240QyUAgN63NWVFRrniRg6KWtyq5SmhXd_CqQEz5K6smrigzm71eExouwyLmDO4W5I8hVKNnPKveJa8Juk9DQcNC3NREdVSu_YBL-XX-axXdPLBIt30Rfre11br1rzbq6vXhkueGthY4kCB-7bt3UY3c2zMJCgShxbr3bh4D_9T6POAmV01X"/>
+</div>
+<button class="absolute -bottom-2 -right-2 bg-primary text-on-primary p-2 rounded-xl shadow-xl active:scale-90 transition-all">
+<span class="material-symbols-outlined text-lg">photo_camera</span>
+</button>
+</div>
+<div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Full Name</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 transition-all" type="text" value="Elena Sterling"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Job Title</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 transition-all" type="text" value="Senior Editorial Lead"/>
+</div>
+<div class="space-y-2 md:col-span-2">
+<label class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Email Address</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-xl px-4 py-3 text-on-surface focus:ring-2 focus:ring-primary/20 transition-all" type="email" value="elena.s@editorialkanban.com"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Workspace Preferences -->
+<section class="bg-surface-container-low rounded-3xl p-8 space-y-8" id="workspace">
+<h2 class="text-xl font-bold text-on-surface">Workspace Preferences</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Theme Selection -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl space-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">palette</span>
+<h3 class="font-bold">Interface Theme</h3>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<button class="flex flex-col items-center gap-2 p-2 rounded-xl border-2 border-primary bg-surface transition-all">
+<div class="w-full h-12 bg-white rounded-lg border border-slate-100 shadow-sm"></div>
+<span class="text-[10px] font-bold uppercase">Light</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-2 rounded-xl border-2 border-transparent hover:border-slate-200 transition-all">
+<div class="w-full h-12 bg-slate-900 rounded-lg shadow-sm"></div>
+<span class="text-[10px] font-bold uppercase">Dark</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-2 rounded-xl border-2 border-transparent hover:border-slate-200 transition-all">
+<div class="w-full h-12 bg-indigo-50 rounded-lg border border-indigo-100 shadow-sm overflow-hidden">
+<div class="h-1/2 w-full bg-indigo-600/10"></div>
+</div>
+<span class="text-[10px] font-bold uppercase">Indigo</span>
+</button>
+</div>
+</div>
+<!-- Notification Settings -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl space-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">notifications_active</span>
+<h3 class="font-bold">Notifications</h3>
+</div>
+<div class="space-y-4">
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-sm font-medium text-secondary group-hover:text-on-surface transition-colors">Email digests</span>
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-sm font-medium text-secondary group-hover:text-on-surface transition-colors">Task deadlines</span>
+<div class="relative inline-flex items-center">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="text-sm font-medium text-secondary group-hover:text-on-surface transition-colors">Mention alerts</span>
+<div class="relative inline-flex items-center">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</div>
+</label>
+</div>
+</div>
+</div>
+</section>
+<!-- Team Permissions -->
+<section class="bg-surface-container-low rounded-3xl p-8 space-y-6" id="permissions">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold text-on-surface">Team Permissions</h2>
+<button class="flex items-center gap-2 bg-surface-container-lowest text-primary px-4 py-2 rounded-xl text-sm font-bold shadow-sm hover:shadow-md transition-all">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                                    Invite Member
+                                </button>
+</div>
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden">
+<div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-surface-container-high text-[10px] font-black uppercase tracking-widest text-on-surface-variant">
+<div class="col-span-5">Member</div>
+<div class="col-span-4">Role</div>
+<div class="col-span-3 text-right">Access</div>
+</div>
+<div class="divide-y divide-surface-container">
+<!-- Member 1 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 items-center hover:bg-surface-container-low/30 transition-colors">
+<div class="col-span-5 flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Headshot of a creative man with a beard and glasses in a brightly lit studio environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNvEsO7sSvCmcBROGJZvWFiqEAaaa3sAWxPsrmCp2CqgMboSm2zlAYGu6_ZJys45aZXWPn74MnjGlPE8jxiRamLx3jV5OsL5tvo2GlL-vzzEIokkmWhTShiovzSk7PeP9NFN7iyytyY0L40Js1JKLXV4pnFX1EevEoLxQF81jmJX3wVGgj2iGJuFh8N-GAMRS0FOzEXdJRj5AMMjHflOj29ZHtjtbfgNWk_PvavGjXvuWSxdIDFwHwW0HdezGDP5CrecdkRGTzwWsa"/>
+<div>
+<p class="text-sm font-bold">Julian Vane</p>
+<p class="text-xs text-on-surface-variant">julian@agency.com</p>
+</div>
+</div>
+<div class="col-span-4">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[10px] font-black uppercase">Editor</span>
+</div>
+<div class="col-span-3 flex justify-end">
+<button class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant transition-all">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+<!-- Member 2 -->
+<div class="grid grid-cols-12 gap-4 px-6 py-4 items-center hover:bg-surface-container-low/30 transition-colors">
+<div class="col-span-5 flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a smiling woman with curly hair in a professional home office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5iFsdN7JjbD_nZv23KfErTGEQTI2voeBWEtoR2C4OTsyxGnvHNsvqjk7QtApck4DOsQpARgdDPMCmR-kgUMN4WmvAxKb0qdluDD5paJYUmNsGjCcdHIZOapiqLE1DM11ibniHtNvIbCQDOXyNljmHNAyojmfBh54I_eNITa_Dau2sCI_OYmtNVjWroww6jIvPUXZWfmdpzFIiLQbiwSr2ga_KVsFWZ3twCKma_0IcwEWyY5y7_KnuBfEP0rp_9AadRKQwP5aw_jlV"/>
+<div>
+<p class="text-sm font-bold">Amara Okafor</p>
+<p class="text-xs text-on-surface-variant">amara.o@editorial.com</p>
+</div>
+</div>
+<div class="col-span-4">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container rounded-full text-[10px] font-black uppercase">Admin</span>
+</div>
+<div class="col-span-3 flex justify-end">
+<button class="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant transition-all">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Actions -->
+<div class="flex items-center justify-end gap-4 pt-4">
+<button class="px-6 py-3 rounded-xl font-bold text-on-surface-variant hover:bg-surface-container transition-all">Discard Changes</button>
+<button class="px-8 py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl font-bold shadow-lg shadow-primary/20 active:scale-95 transition-all">Save Preferences</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
