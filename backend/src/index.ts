@@ -9,6 +9,8 @@ import { authRoutes } from "./routes/auth.js";
 import { boardRoutes } from "./routes/boards.js";
 import { taskRoutes } from "./routes/tasks.js";
 import { teamRoutes } from "./routes/team.js";
+import { notificationRoutes } from "./routes/notifications.js";
+import { userRoutes } from "./routes/users.js";
 import { seedDatabase } from "./seed/seedDatabase.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
@@ -32,6 +34,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/boards", boardRoutes);
 app.use("/api/tasks", taskRoutes);
 app.use("/api/team", teamRoutes);
+app.use("/api/notifications", notificationRoutes);
+app.use("/api/users", userRoutes);
 
 app.use(errorHandler);
 

@@ -11,6 +11,7 @@ import { ActivityEntry } from "../models/ActivityEntry.js";
 import { Board } from "../models/Board.js";
 import { Task } from "../models/Task.js";
 import { User } from "../models/User.js";
+import { Notification } from "../models/Notification.js";
 import { serializeActivityEntry, serializeTask } from "../utils/serialize.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
@@ -228,6 +229,13 @@ router.put("/:id", authenticate, validate(updateTaskSchema), asyncHandler(async 
     throw new AppError("Forbidden", 403);
   }
 
+  const previousDeadlineMs = task.deadline instanceof Date ? task.deadline.getTime() : null;
+  const previousAssigneeId =
+    task.assignedTo && typeof task.assignedTo === "object" && "_id" in task.assignedTo
+      ? String((task.assignedTo as any)._id)
+      : null;
+  let nextAssigneeId: string | null = previousAssigneeId;
+
   if (body.title !== undefined) task.title = body.title;
   if (body.description !== undefined) task.description = body.description;
   if (body.priority !== undefined) task.priority = body.priority;
@@ -241,18 +249,59 @@ router.put("/:id", authenticate, validate(updateTaskSchema), asyncHandler(async 
   if (body.assignedTo !== undefined) {
     if (body.assignedTo === null) {
       task.assignedTo = undefined;
+      nextAssigneeId = null;
     } else {
       const assignedUser = await User.findById(body.assignedTo).select("_id");
       if (!assignedUser) {
         throw new AppError("Assigned user not found", 404);
       }
       task.assignedTo = assignedUser._id;
+      nextAssigneeId = String(assignedUser._id);
     }
   }
   if (body.tags !== undefined) task.tags = body.tags;
   if (body.assignees !== undefined) task.assignees = body.assignees;
   await task.save();
   await task.populate("assignedTo", "name avatar");
+
+  if (body.assignedTo !== undefined && nextAssigneeId && nextAssigneeId !== previousAssigneeId && nextAssigneeId !== userId) {
+    const assigned = await User.findById(nextAssigneeId).select("notificationPrefs").lean();
+    const prefs = assigned && !Array.isArray(assigned) ? (assigned as any).notificationPrefs : null;
+    const inAppEnabled = prefs?.inApp?.taskAssigned !== false;
+    if (inAppEnabled) {
+      await Notification.create({
+        userId: new mongoose.Types.ObjectId(nextAssigneeId),
+        kind: "task_assigned",
+        title: "Task assigned",
+        message: `You were assigned to "${String(task.title)}".`,
+        meta: { taskId: String(task._id), boardId: String(board._id) },
+        readAt: null,
+      });
+    }
+  }
+
+  if (body.deadline !== undefined && nextAssigneeId && task.deadline instanceof Date) {
+    const nextDeadlineMs = task.deadline.getTime();
+    const changed = previousDeadlineMs === null ? true : previousDeadlineMs !== nextDeadlineMs;
+    const now = Date.now();
+    const within48h = nextDeadlineMs > now && nextDeadlineMs - now <= 48 * 60 * 60 * 1000;
+
+    if (changed && within48h) {
+      const assigned = await User.findById(nextAssigneeId).select("notificationPrefs").lean();
+      const prefs = assigned && !Array.isArray(assigned) ? (assigned as any).notificationPrefs : null;
+      const inAppEnabled = prefs?.inApp?.deadline !== false;
+      if (inAppEnabled) {
+        await Notification.create({
+          userId: new mongoose.Types.ObjectId(nextAssigneeId),
+          kind: "deadline_approaching",
+          title: "Deadline approaching",
+          message: `Deadline is coming up for "${String(task.title)}".`,
+          meta: { taskId: String(task._id), boardId: String(board._id), deadline: task.deadline.toISOString() },
+          readAt: null,
+        });
+      }
+    }
+  }
 
   res.json(serializeTaskDoc(task));
 }));

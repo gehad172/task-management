@@ -8,6 +8,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { AppError } from "../utils/AppError.js";
 import { User } from "../models/User.js";
 import { Workspace } from "../models/Workspace.js";
+import { Notification } from "../models/Notification.js";
 
 const router = Router();
 
@@ -114,6 +115,20 @@ router.post("/invite", authenticate, validate(inviteSchema), asyncHandler(async 
 
   await workspace.save();
 
+  const invited = await User.findById((user as any)._id).select("notificationPrefs").lean();
+  const prefs = invited && !Array.isArray(invited) ? (invited as any).notificationPrefs : null;
+  const inAppEnabled = prefs?.inApp?.teamInvite !== false;
+  if (inAppEnabled) {
+    await Notification.create({
+      userId: (user as any)._id,
+      kind: "team_invite",
+      title: "Added to workspace",
+      message: "You were added to a workspace.",
+      meta: { ownerId },
+      readAt: null,
+    });
+  }
+
   res.status(201).json({ member: serializeMember(user as any, body.role) });
 }));
 
@@ -153,4 +168,3 @@ router.delete("/members/:memberId", authenticate, validate(memberIdParamsSchema)
 }));
 
 export { router as teamRoutes };
-
