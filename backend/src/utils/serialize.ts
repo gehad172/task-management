@@ -41,6 +41,8 @@ export function serializeTask(doc: {
   description?: string;
   status: string;
   priority: string;
+  deadline?: Date;
+  assignedTo?: { _id: mongoose.Types.ObjectId; name?: string; avatar?: string } | null;
   position: number;
   commentsCount?: number;
   attachmentsCount?: number;
@@ -62,6 +64,14 @@ export function serializeTask(doc: {
     priority: doc.priority,
     position: doc.position,
   };
+  if (doc.deadline != null) out.deadline = doc.deadline.toISOString();
+  if (doc.assignedTo?._id != null) {
+    out.assignedTo = {
+      id: doc.assignedTo._id.toString(),
+      name: doc.assignedTo.name ?? "User",
+      avatar: doc.assignedTo.avatar ?? null,
+    };
+  }
   if (doc.description != null) out.description = DOMPurifyServer.sanitize(doc.description);
   if (doc.commentsCount != null) out.commentsCount = doc.commentsCount;
   if (doc.attachmentsCount != null) out.attachmentsCount = doc.attachmentsCount;

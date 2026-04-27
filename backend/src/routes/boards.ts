@@ -188,7 +188,8 @@ router.get("/:boardId/kanban", authenticate, validate(kanbanQuerySchema), asyncH
   const boardOid = board._id as mongoose.Types.ObjectId;
 
   const taskDocs = await Task.find({ boardId: boardOid, isArchived: false })
-    .select("title description status priority position commentsCount attachmentsCount dueLabel scheduleLabel progress highlighted completed assigneeAvatar assigneeAvatars")
+    .select("title description status priority deadline assignedTo position commentsCount attachmentsCount dueLabel scheduleLabel progress highlighted completed assigneeAvatar assigneeAvatars")
+    .populate("assignedTo", "name avatar")
     .sort({ position: 1 })
     .skip(offset)
     .limit(limit)
@@ -216,6 +217,14 @@ router.get("/:boardId/kanban", authenticate, validate(kanbanQuerySchema), asyncH
         description: t.description ? String(t.description) : undefined,
         status: String(t.status),
         priority: String(t.priority),
+        deadline: t.deadline instanceof Date ? t.deadline : undefined,
+        assignedTo: t.assignedTo && typeof t.assignedTo === "object" && "_id" in t.assignedTo
+          ? {
+              _id: t.assignedTo._id as mongoose.Types.ObjectId,
+              name: t.assignedTo.name ? String(t.assignedTo.name) : undefined,
+              avatar: t.assignedTo.avatar ? String(t.assignedTo.avatar) : undefined,
+            }
+          : undefined,
         position: typeof t.position === "number" ? t.position : 0,
         commentsCount: t.commentsCount ?? undefined,
         attachmentsCount: t.attachmentsCount ?? undefined,

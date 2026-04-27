@@ -16,6 +16,8 @@ const taskSchema = new Schema(
       enum: ["high", "medium", "low"],
       required: true,
     },
+    deadline: { type: Date },
+    assignedTo: { type: Schema.Types.ObjectId, ref: "User", index: true },
     position: { type: Number, required: true, default: 0, index: true },
     commentsCount: { type: Number },
     attachmentsCount: { type: Number },
