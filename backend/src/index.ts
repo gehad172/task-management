@@ -8,6 +8,7 @@ import { connectDb } from "./db/connect.js";
 import { authRoutes } from "./routes/auth.js";
 import { boardRoutes } from "./routes/boards.js";
 import { taskRoutes } from "./routes/tasks.js";
+import { teamRoutes } from "./routes/team.js";
 import { seedDatabase } from "./seed/seedDatabase.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 
@@ -30,6 +31,7 @@ app.get("/api/health", (_req: Request, res: Response) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/boards", boardRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api/team", teamRoutes);
 
 app.use(errorHandler);
 
